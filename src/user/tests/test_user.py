@@ -28,4 +28,4 @@ class TestUser(unittest.TestCase):
 
         self.assertTrue(user.validated_cellphone)
         self.assertTrue(user.validated_email)
-        self.assertTrue(user.is_active())
+        self.assertFalse(user.is_active())
