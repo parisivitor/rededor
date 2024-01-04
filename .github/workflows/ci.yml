@@ -25,7 +25,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/${{ github.repository_name }}:latest
+          tags: ghcr.io/${{ github.repository_owner }}/${{ github.repository_name }}:${{ github.sha }}
         env:
           DOCKER_USERNAME: ${{ github.repository_owner }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_TOKEN }}

@@ -32,4 +32,4 @@ class TestUser(unittest.TestCase):
 
     def test_to_fail(self):
         user = User(name='Vitor', last_name='Parisi', cellphone='19993551501', email='parisivitor95@gmail.com')
-        self.assertEqual(user.name, 'Vitorsdasdsad')
+        self.assertEqual(user.name, 'Vitor')
