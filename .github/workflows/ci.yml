@@ -19,7 +19,8 @@ jobs:
           context: .
           file: ./Dockerfile
           push: false
-
+      - name: Build docker image
+        uses: docker build -t my-python-app .
       - name: Run tests in Docker container
         run: |
           docker run my-python-app python -m unittest discover -s src/user/tests -p 'test_*.py'
