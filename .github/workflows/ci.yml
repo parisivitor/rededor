@@ -21,7 +21,7 @@ jobs:
         with:
           context: .
           file: ./Dockerfile
-          push: true
+          push: false
           tags: ghcr.io/parisivitor95/rededor:latest
         env:
           DOCKER_USERNAME: parisivitor95@gmail.com
