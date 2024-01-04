@@ -1,6 +1,9 @@
 name: ci-python-workflow
 
-on: [push]
+on:
+  pull_request:
+    branches:
+      - develop
 
 jobs:
   check-application:
@@ -15,6 +18,9 @@ jobs:
 
       - name: Set up QEMU
         uses: docker/setup-buildx-action@v1
+
+      - name: Docker login
+        uses: docker login -u parisivitor95@gmail.com -p ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
