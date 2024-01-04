@@ -22,10 +22,10 @@ jobs:
           context: .
           file: ./Dockerfile
           push: false
-          tags: ghcr.io/${{ github.repository_owner }}/rededor:latest
+          tags: ghcr.io/parisivitor95/rededor:latest
         env:
           DOCKER_USERNAME: ${{ github.repository_owner }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_TOKEN }}
 
       - name: Run tests in Docker container
-        run: docker run my-python-app python -m unittest discover -s src/user/tests -p 'test_*.py'
+        run: docker run parisivitor95/rededor:latest python -m unittest discover -s src/user/tests -p 'test_*.py'
