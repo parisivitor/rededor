@@ -13,6 +13,8 @@ WORKDIR /home/app/
 ENV PYTHONPATH=${PYTHONPATH}/home/app/src
 
 COPY requirements.txt /home/app
+COPY . /home/app/
+
 RUN pip install -r requirements.txt
 
 CMD [ "tail", "-f", "/dev/null" ]
