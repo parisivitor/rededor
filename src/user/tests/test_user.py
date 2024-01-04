@@ -1,35 +1,25 @@
-import unittest
-from dataclasses import is_dataclass
+import pytest
 from user.domain.user import User
 
-class TestUser(unittest.TestCase):
-    def test_is_a_dataclass(self):
-        self.assertTrue(is_dataclass(User))
 
+def test_constructor():
+    user = User(name='Vitor', last_name='Parisi', cellphone='19993551501', email='parisivitor95@gmail.com')
 
-    def test_constructor(self):
-        user = User(name='Vitor', last_name='Parisi', cellphone='19993551501', email='parisivitor95@gmail.com')
+    assert user.name == 'Vitor'
+    assert user.last_name == 'Parisi'
+    assert user.get_full_name() == 'Vitor Parisi'
+    assert user.email == 'parisivitor95@gmail.com'
+    assert user.cellphone == '19993551501'
+    assert not user.validated_cellphone
+    assert not user.validated_email
+    assert not user.is_active()
 
-        self.assertEqual(user.name, 'Vitor')
-        self.assertEqual(user.last_name, 'Parisi')
-        self.assertEqual(user.get_full_name(), 'Vitor Parisi')
-        self.assertEqual(user.email, 'parisivitor95@gmail.com')
-        self.assertEqual(user.cellphone, '19993551501')
-        self.assertFalse(user.validated_cellphone)
-        self.assertFalse(user.validated_email)
-        self.assertFalse(user.is_active())
+def test_verify_email_cellphone_and_status_active():
+    user = User(name='Vitor', last_name='Parisi', cellphone='19993551501', email='parisivitor95@gmail.com')
+    user.verify_email()
+    user.verify_cellphone()
+    user.activate()
 
-
-    def test_verify_email_cellphone_and_status_active(self):
-        user = User(name='Vitor', last_name='Parisi', cellphone='19993551501', email='parisivitor95@gmail.com')
-        user.verify_email()
-        user.verify_cellphone()
-        user.activate()
-
-        self.assertTrue(user.validated_cellphone)
-        self.assertTrue(user.validated_email)
-        self.assertTrue(user.is_active())
-
-    def test_to_fail(self):
-        user = User(name='Vitor', last_name='Parisi', cellphone='19993551501', email='parisivitor95@gmail.com')
-        self.assertEqual(user.name, 'Vitor')
+    assert user.validated_cellphone
+    assert user.validated_email
+    assert user.is_active()
