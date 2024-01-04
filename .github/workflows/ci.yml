@@ -21,11 +21,13 @@ jobs:
         with:
           context: .
           file: ./Dockerfile
-          push: false
+          push: true
           tags: ghcr.io/${{ github.repository_owner }}/${{ github.repository_name }}:latest
         env:
           DOCKER_USERNAME: ${{ github.repository_owner }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_TOKEN }}
 
       - name: Run tests in Docker container
-        run: docker run my-python-app python -m unittest discover -s src/user/tests -p 'test_*.py'
+        run: |
+          docker pull ghcr.io/${{ github.repository_owner }}/${{ github.repository_name }}:latest
+          docker run ghcr.io/${{ github.repository_owner }}/${{ github.repository_name }}:latest python -m unittest discover -s src/user/tests -p 'test_*.py'
