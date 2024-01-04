@@ -1,6 +1,9 @@
 name: ci-python-workflow
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   check-application:
@@ -21,7 +24,7 @@ jobs:
         with:
           context: .
           file: ./Dockerfile
-          push: true
+          push: false
           tags: ghcr.io/${{ github.repository_owner }}/${{ github.repository_name }}:latest
         env:
           DOCKER_USERNAME: ${{ github.repository_owner }}
