@@ -10,13 +10,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Docker
+      - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
 
-      - name: Set up QEMU
+      - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
       - name: Login to Docker Hub
@@ -38,3 +38,15 @@ jobs:
 
       - name: Run tests in Docker container
         run: docker run parisivitor95/rededor:latest python -m unittest discover -s src/user/tests -p 'test_*.py'
+
+      - name: Install tox and any other packages
+        run: pip install tox
+
+      - name: Run tox
+        run: tox -e py
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
