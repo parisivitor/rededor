@@ -1,9 +1,6 @@
 name: CD Gitops
 
-on:
-  push:
-    branches:
-      - '*'
+on: [push]
 
 jobs:
   build:
