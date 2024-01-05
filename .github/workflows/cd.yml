@@ -1,6 +1,9 @@
 name: CD Gitops
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 permissions: write-all
 
@@ -46,10 +49,11 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git commit -am "Bump docker version"
+        git commit -am "Update Docker image tag to $GITHUB_SHA"
 
     - name: Push new tag name
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         repository: parisivitor/rededor
+        branch: main
