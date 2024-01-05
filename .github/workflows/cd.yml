@@ -25,7 +25,7 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: parisivitor95/rededor:latest
+        tags: parisivitor95/rededor:${{ github.sha }}
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_TOKEN }}
