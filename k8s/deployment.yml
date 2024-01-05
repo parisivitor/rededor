@@ -6,17 +6,13 @@ spec:
   selector:
     matchLabels:
       app: rededorserver
-    template:
-      metadata:
-        labels:
-          app: rededorserver
-      spec:
-        containers:
-        - name: rededorserver
-          image: rededorserver #parisivitor95/rededor:latest
-          # resources:
-          #   limits:
-          #     memory: "128Mi"
-          #     cpu: "500m"
-          ports:
-           - containerPort: 8080
+  template:
+    metadata:
+      labels:
+        app: rededorserver
+    spec:
+      containers:
+      - name: rededorserver
+        image: parisivitor95/rededor:latest
+        ports:
+        - containerPort: 8000

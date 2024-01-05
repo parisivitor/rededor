@@ -2,3 +2,4 @@ pytest
 tox
 fastapi
 uvicorn
+requests
