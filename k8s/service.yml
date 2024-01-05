@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: rededorserver-service
+spec:
+  selector:
+    app: rededorserver
+  ports:
+  - port: 8000
+    targetPort: 8000
