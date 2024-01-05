@@ -40,7 +40,9 @@ jobs:
         run: docker run -d -p 8000:8000 parisivitor95/rededor:latest
 
       - name: Run tox
-        run: tox -e py
+        run: |
+          pip install tox
+          tox -e py
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
