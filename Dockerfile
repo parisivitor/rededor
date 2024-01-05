@@ -17,4 +17,7 @@ COPY . /home/app/
 
 RUN pip install -r requirements.txt
 
-CMD [ "tail", "-f", "/dev/null" ]
+# CMD [ "tail", "-f", "/dev/null" ]
+CMD ["uvicorn", "--host=0.0.0.0", "--port=8000", "main:app"]
+
+# docker run --rm -p 8000:8000 parisivitor95/rededor:latest
