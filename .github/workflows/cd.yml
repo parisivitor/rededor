@@ -40,5 +40,5 @@ jobs:
     - name: Push new tag name
       uses: ad-m/github-push-action@master
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ github.token }}
         repository: ${{ secrets.GIT_USERNAME }}/rededor
