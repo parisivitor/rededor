@@ -24,7 +24,7 @@ jobs:
       with:
         kustomize-version: "5.3.0"
 
-    - name:
+    - name: Update Kubernetes resources
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
       run: |
@@ -41,4 +41,4 @@ jobs:
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.TOKEN_GITHUB }}
-        repository: parisivitor/rededor
+        repository: ${{ secrets.GIT_USERNAME }}/rededor
