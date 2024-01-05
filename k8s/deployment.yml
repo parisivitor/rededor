@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rededorserver
+spec:
+  selector:
+    matchLabels:
+      app: rededorserver
+  template:
+    metadata:
+      labels:
+        app: rededorserver
+    spec:
+      containers:
+      - name: rededorserver
+        image: parisivitor95/rededor:latest
+        ports:
+        - containerPort: 8000

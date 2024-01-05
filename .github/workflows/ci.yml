@@ -33,20 +33,19 @@ jobs:
           push: false
           tags: ghcr.io/parisivitor95/rededor:latest
         env:
-          DOCKER_USERNAME: parisivitor95@gmail.com
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_TOKEN }}
 
       - name: Run tests in Docker container
-        run: docker run parisivitor95/rededor:latest python -m unittest discover -s src/user/tests -p 'test_*.py'
-
-      - name: Install tox and any other packages
-        run: pip install tox
+        run: docker run -d -p 8000:8000 parisivitor95/rededor:latest
 
       - name: Run tox
-        run: tox -e py
+        run: |
+          pip install tox
+          tox -e py
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
