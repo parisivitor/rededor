@@ -2,6 +2,8 @@ name: CD Gitops
 
 on: [push]
 
+permissions: write-all
+
 jobs:
   build:
     name: Build
