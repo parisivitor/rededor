@@ -28,8 +28,7 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        repository: ${{ secrets.DOCKER_USERNAME }}/rededor
-        tags:  ${{ github.sha }}
+        tags:  ghcr.io/ ${{ secrets.DOCKER_USERNAME }}/rededor:${{ github.sha }}
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_TOKEN }}
