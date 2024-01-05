@@ -22,3 +22,7 @@ EXPOSE 8000
 CMD ["uvicorn", "--host=0.0.0.0", "--port=8000", "main:app"]
 
 # docker run --rm -p 8000:8000 parisivitor95/rededor:latest
+# docker build -t <name> .
+# docker run -it <name>
+# docker run -it --name rededor-app rededor
+# docker exec -it rededor-app tox -e py
