@@ -3,6 +3,9 @@
 __pycache__/
 coverage.xml
 .coverage
-/terraform
+/terraform/examples
+/terraform/providers
+/terraform/hashicorp
+/terraform/.terraform
 /aws
 /kubernets
