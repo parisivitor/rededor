@@ -1,6 +1,10 @@
 name: ci-python-workflow
 
-on: [pull_request]
+# on: [pull_request]
+on:
+  pull_request:
+    branches:
+      - develop
 
 jobs:
   check-application:

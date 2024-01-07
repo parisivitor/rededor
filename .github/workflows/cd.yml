@@ -59,4 +59,4 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         repository: parisivitor/rededor
         branch: main
-        force: true
+        force: "+refs/heads/main:refs/heads/main"
