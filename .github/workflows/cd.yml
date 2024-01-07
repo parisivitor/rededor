@@ -54,9 +54,6 @@ jobs:
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git commit -am "Update Docker image tag to $GITHUB_SHA"
-        git push origin $release_branch
-        git checkout main
-        git merge $release_branch
         git push origin main --force
 
     env:
