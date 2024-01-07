@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: rededorserver
-        # image: parisivitor95/rededor:latest
+        image: rededorserver
         resources:
           limits:
             memory: "256Mi"
