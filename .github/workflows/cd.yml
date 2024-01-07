@@ -3,7 +3,7 @@ name: CD Gitops
 on:
   push:
     branches:
-      - 'release/1'
+      - 'main'
 
 permissions: write-all
 
@@ -54,7 +54,9 @@ jobs:
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git commit -am "Update Docker image tag to $GITHUB_SHA"
-        git push origin main
+        git push origin main --force
+    env:
+        GITHUB_TOKEN: ${{ secrets.PERSONA_ACCESS_TOKEN }}
 
     # - name: create pull request
     #   run: gh pr create -B update-main -H main --title 'Update Docker image tag to $GITHUB_SHA' --body 'Created by Github action'
