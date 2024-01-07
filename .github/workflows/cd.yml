@@ -51,14 +51,13 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
+        git checkout -b update-main
         git commit -am "Update Docker image tag to $GITHUB_SHA"
+        git push origin update-main
+        hub pull-request -b main -h update-main -m "Release Update"
 
-    - name: Push new tag name
-      run: |
-        git push origin main --force-with-lease
-
-      env:
-        GITHUB_TOKEN: ${{ secrets.PERSONA_ACCESS_TOKEN }}
+          env:
+            GITHUB_TOKEN: ${{ secrets.PERSONA_ACCESS_TOKEN }}
 
     # - name: Push new tag name
     #   uses: ad-m/github-push-action@master
