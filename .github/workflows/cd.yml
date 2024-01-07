@@ -30,7 +30,7 @@ jobs:
         push: true
         tags: |
           parisivitor95/rededor:${{ github.sha }}
-          parisivitor95/rededor:latest
+          parisivitor95/rededor:latest-prod
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_TOKEN }}
