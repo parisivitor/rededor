@@ -54,8 +54,12 @@ jobs:
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git commit -am "Update Docker image tag to $GITHUB_SHA"
-        git push origin main --force
 
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        repository: parisivitor/rededor
     env:
         GITHUB_TOKEN: ${{ secrets.PERSONA_ACCESS_TOKEN }}
 
