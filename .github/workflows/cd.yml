@@ -60,6 +60,7 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         repository: parisivitor/rededor
+        branch: main
     env:
         GITHUB_TOKEN: ${{ secrets.PERSONA_ACCESS_TOKEN }}
 
