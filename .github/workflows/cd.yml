@@ -3,7 +3,7 @@ name: CD Gitops
 on:
   push:
     branches:
-      - main
+      - 'release/*'
 
 permissions: write-all
 
@@ -15,6 +15,8 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.PERSONA_ACCESS_TOKEN }}
 
     - name: Login to Docker Hub
       uses: docker/login-action@v3
@@ -51,18 +53,35 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git checkout -b update-main
         git commit -am "Update Docker image tag to $GITHUB_SHA"
-        git push origin update-main
-        hub pull-request -b main -h update-main -m "Release Update"
 
-          env:
-            GITHUB_TOKEN: ${{ secrets.PERSONA_ACCESS_TOKEN }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.PERSONA_ACCESS_TOKEN }}
 
-    # - name: Push new tag name
-    #   uses: ad-m/github-push-action@master
+    - name: Push new tag name
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        repository: parisivitor/rededor
+        branch: main
+        force: true
+
+    # - name: Commit
+    #   run: |
+    #     git config --local user.email "action@github.com"
+    #     git config --local user.name "GitHub Action"
+    #     base_branch=$(echo "${{ github.ref }}" | sed 's/refs\/heads\///')  # Obtém o nome da branch atual
+    #     git checkout -b "${base_branch}"
+    #     git pull origin  "${base_branch}"
+
+    # - name: Create Pull Request
+    #   uses: peter-evans/create-pull-request@v5
     #   with:
-    #     github_token: ${{ secrets.GITHUB_TOKEN }}
-    #     repository: parisivitor/rededor
-    #     branch: main
-    #     force: "+refs/heads/main:refs/heads/main"
+    #     branch: update-main
+    #     base: main
+    #     commit-message: "Release Update"
+    #     title: "Release Update"
+    #     labels: "auto-merge"
+    #     token: ${{ secrets.GITHUB_TOKEN }}
+    #   env:
+    #     GITHUB_TOKEN: ${{ secrets.PERSONA_ACCESS_TOKEN }}
