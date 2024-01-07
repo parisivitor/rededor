@@ -8,4 +8,4 @@ resources:
 images:
 - name: rededorserver
   newName: parisivitor95/rededor
-  newTag: 0b694155c6c647ad1819d246e50a666acc590d09
+  newTag: 035d4a80553c5552a061f67ce57daf05167d5aa5
