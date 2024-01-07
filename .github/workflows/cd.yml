@@ -3,7 +3,7 @@ name: CD Gitops
 on:
   push:
     branches:
-      - 'release/*'
+      - 'release/1'
 
 permissions: write-all
 
