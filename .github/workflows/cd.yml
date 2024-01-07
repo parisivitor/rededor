@@ -1,9 +1,11 @@
 name: CD Gitops
 
 on:
-  push:
+  pull_request:
     branches:
-      - 'main'
+      - main
+    types:
+      - closed
 
 permissions: write-all
 
@@ -11,6 +13,7 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' && github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main'
 
     steps:
     - name: Checkout
@@ -63,36 +66,3 @@ jobs:
         branch: main
     env:
         GITHUB_TOKEN: ${{ secrets.PERSONA_ACCESS_TOKEN }}
-
-    # - name: create pull request
-    #   run: gh pr create -B update-main -H main --title 'Update Docker image tag to $GITHUB_SHA' --body 'Created by Github action'
-    #   env:
-    #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    # - name: Push new tag name
-    #   uses: ad-m/github-push-action@master
-    #   with:
-    #     github_token: ${{ secrets.GITHUB_TOKEN }}
-    #     repository: parisivitor/rededor
-    #     branch: main
-    #     force: true
-
-    # - name: Commit
-    #   run: |
-    #     git config --local user.email "action@github.com"
-    #     git config --local user.name "GitHub Action"
-    #     base_branch=$(echo "${{ github.ref }}" | sed 's/refs\/heads\///')  # Obtém o nome da branch atual
-    #     git checkout -b "${base_branch}"
-    #     git pull origin  "${base_branch}"
-
-    # - name: Create Pull Request
-    #   uses: peter-evans/create-pull-request@v5
-    #   with:
-    #     branch: update-main
-    #     base: main
-    #     commit-message: "Release Update"
-    #     title: "Release Update"
-    #     labels: "auto-merge"
-    #     token: ${{ secrets.GITHUB_TOKEN }}
-    #   env:
-    #     GITHUB_TOKEN: ${{ secrets.PERSONA_ACCESS_TOKEN }}
