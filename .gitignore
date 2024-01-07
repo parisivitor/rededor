@@ -3,3 +3,10 @@
 __pycache__/
 coverage.xml
 .coverage
+/terraform/examples
+/terraform/providers
+/terraform/hashicorp
+/terraform/.terraform
+/aws
+/kubernets
+/terraform/kubeconfig-info

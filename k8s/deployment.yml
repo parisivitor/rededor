@@ -2,17 +2,24 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: rededorserver
+  labels:
+    app: rededorserver
 spec:
   selector:
     matchLabels:
       app: rededorserver
+  replicas: 2
   template:
     metadata:
       labels:
-        app: rededorserver
+        app: "rededorserver"
     spec:
       containers:
       - name: rededorserver
         image: parisivitor95/rededor:latest
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "1000m"
         ports:
         - containerPort: 8000

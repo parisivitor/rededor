@@ -2,10 +2,10 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-- deplyment.yml
-- servie.yml
+- deployment.yml
+- service.yml
 
 images:
 - name: rededorserver
   newName: parisivitor95/rededor
-  newTag: 16a89b6a55d67f9e999c0eccc4f2464cc704179c
+  newTag: 2c408714144586cc5e89a07e56101d806277a3cc
