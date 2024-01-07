@@ -54,9 +54,16 @@ jobs:
         git commit -am "Update Docker image tag to $GITHUB_SHA"
 
     - name: Push new tag name
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        repository: parisivitor/rededor
-        branch: main
-        force: "+refs/heads/main:refs/heads/main"
+      run: |
+        git push origin main --force-with-lease
+
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    # - name: Push new tag name
+    #   uses: ad-m/github-push-action@master
+    #   with:
+    #     github_token: ${{ secrets.GITHUB_TOKEN }}
+    #     repository: parisivitor/rededor
+    #     branch: main
+    #     force: "+refs/heads/main:refs/heads/main"
