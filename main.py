@@ -4,4 +4,4 @@ app = FastAPI()
 
 @app.get("/")
 def read_root():
-    return {"message": "Project Rede D`or with CI/CD, Terraform on aws!"}
+    return {"message": "Project Rede D`or with CI/CD, Terraform on aws! Showing in video"}
