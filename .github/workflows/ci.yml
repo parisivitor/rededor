@@ -36,7 +36,7 @@ jobs:
           DOCKER_PASSWORD: ${{ secrets.DOCKER_TOKEN }}
 
       - name: Run Docker container
-        run: docker run -d -p 8000:8000 parisivitor95/rededor:latest-dev
+        run: docker run -d -p 8000:8000
 
       - name: Run tests
         run: |
